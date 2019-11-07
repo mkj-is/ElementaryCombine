@@ -21,7 +21,7 @@ let package = Package(
     targets: [
         .target(
             name: "ElementaryCombine",
-            dependencies: []),
+            dependencies: ["Elementary"]),
         .testTarget(
             name: "ElementaryCombineTests",
             dependencies: ["ElementaryCombine"]),

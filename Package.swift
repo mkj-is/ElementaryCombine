@@ -16,7 +16,7 @@ let package = Package(
             targets: ["ElementaryCombine"]),
     ],
     dependencies: [
-        .package(path: "../Elementary"),
+        .package(url: "https://github.com/mkj-is/Elementary.git", from: "0.1.0")
     ],
     targets: [
         .target(

@@ -3,10 +3,9 @@ import Elementary
 
 public final class ObservableStore<State, Action>: ObservableObject {
 
-    public var objectWillChange: PassthroughSubject<State, Never>
-    public var state: State { baseStore.state }
+    @Published public private(set) var state: State
 
-    private let baseStore: Store<State, Action>
+    private var baseStore: Store<State, Action>?
 
     public init(
         state: State,
@@ -14,15 +13,14 @@ public final class ObservableStore<State, Action>: ObservableObject {
         effect: Effect<State, Action>? = nil,
         initialAction: Action? = nil
     ) {
-        let passthroughSubject = PassthroughSubject<State, Never>()
-        let passthroughEffect: Effect<State, Action> = { state, _, _ in
-            passthroughSubject.send(state())
+        self.state = state
+
+        let passthroughEffect: Effect<State, Action> = { [weak self] state, _, _ in
+            self?.state = state()
         }
+        let combinedEffect = effect.flatMap { join(effects: $0, passthroughEffect) } ?? passthroughEffect
 
-        let combinedEffect = effect.flatMap { combine(effects: $0, passthroughEffect) } ?? passthroughEffect
-
-        self.objectWillChange = passthroughSubject
-        self.baseStore = Store<State, Action>(
+        baseStore = Store<State, Action>(
             state: state,
             update: update,
             effect: combinedEffect,
@@ -31,7 +29,7 @@ public final class ObservableStore<State, Action>: ObservableObject {
     }
 
     public func dispatch(_ action: Action) {
-        baseStore.dispatch(action)
+        baseStore?.dispatch(action)
     }
 }
 

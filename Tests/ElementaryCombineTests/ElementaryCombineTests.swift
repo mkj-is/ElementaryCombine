@@ -3,7 +3,7 @@ import XCTest
 
 final class ElementaryCombineTests: XCTestCase {
     func testExample() {
-        XCTAssertEqualTrue(true)
+        XCTAssertTrue(true)
     }
 
     static var allTests = [

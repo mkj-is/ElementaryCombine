@@ -13,7 +13,7 @@ let package = Package(
     products: [
         .library(
             name: "ElementaryCombine",
-            targets: ["ElementaryCombine"]),
+            targets: ["ElementaryCombine"])
     ],
     dependencies: [
         .package(url: "https://github.com/mkj-is/Elementary.git", from: "0.1.0")
@@ -24,6 +24,6 @@ let package = Package(
             dependencies: ["Elementary"]),
         .testTarget(
             name: "ElementaryCombineTests",
-            dependencies: ["ElementaryCombine"]),
+            dependencies: ["ElementaryCombine"])
     ]
 )

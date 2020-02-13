@@ -22,6 +22,6 @@ final class ObservableStoreTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testWillChange", testWillChange),
+        ("testWillChange", testWillChange)
     ]
 }

@@ -3,5 +3,5 @@ import XCTest
 import ElementaryCombineTests
 
 var tests = [XCTestCaseEntry]()
-tests += ElementaryCombineTests.allTests()
+tests += ObservableStoreTests.allTests()
 XCTMain(tests)

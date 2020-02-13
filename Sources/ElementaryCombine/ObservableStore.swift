@@ -32,4 +32,3 @@ public final class ObservableStore<State, Action>: ObservableObject {
         baseStore?.dispatch(action)
     }
 }
-
